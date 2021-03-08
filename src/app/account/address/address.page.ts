@@ -26,7 +26,7 @@ export class AddressPage implements OnInit {
   address:string;
   text:any;
   marker: any;
-  apiKey: any = "AIzaSyCeHcSHzfqisO8Si_FW4s-EzyK9wJTsJ2U";
+  apiKey: any = "AIzaSyCSlQXV8Bbm6QvHoTkiVFVNcCVc5kPUPjo";
   constructor(
 
     public route: ActivatedRoute,

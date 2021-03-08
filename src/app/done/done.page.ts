@@ -27,7 +27,7 @@ export class DonePage implements OnInit {
  address:any;
  Interval_1:any;
  Intervarl_2:any;
- apiKey: any = "AIzaSyCeHcSHzfqisO8Si_FW4s-EzyK9wJTsJ2U";
+ apiKey: any = "AIzaSyCSlQXV8Bbm6QvHoTkiVFVNcCVc5kPUPjo";
  chargeMap: boolean = false;
  marker: any;
  km_h = 50;

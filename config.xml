@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="beep.beep.entregas" version="0.0.20" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="beep.beep.entregas" version="0.0.21" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>BeepBeep Entregas</name>
     <description>¡Tu comida favorita hasta la puerta de tu casa!</description>
     <author email="soporte.desarrollosqv@gmail.com" href="https://desarrollos-qv.web.app">Desarrollos QV</author>
@@ -19,7 +19,7 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyCeHcSHzfqisO8Si_FW4s-EzyK9wJTsJ2U" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyCSlQXV8Bbm6QvHoTkiVFVNcCVc5kPUPjo" />
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <platform name="android">
         <preference name="android-targetSdkVersion" value="29" />
