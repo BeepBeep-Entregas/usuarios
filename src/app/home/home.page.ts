@@ -158,24 +158,24 @@ export class HomePage {
     this.keyboard.onKeyboardWillShow().subscribe(()=>{this.isKeyboardHide=false;});
     this.keyboard.onKeyboardWillHide().subscribe(()=>{this.isKeyboardHide=true;});
 
-    // if (!localStorage.getItem('user_id')) {
-    //   this.nav.navigateRoot('/welcome');
-    // }else {
+    if (!localStorage.getItem('user_id')) {
+      this.nav.navigateRoot('/welcome');
+    }else {
 
-    //   if(localStorage.getItem('user_id') == 'null')
-    //   {
-    //     this.nav.navigateRoot('/welcome');
-    //   }
-    // }
+      if(localStorage.getItem('user_id') == 'null')
+      {
+        this.nav.navigateRoot('/welcome');
+      }
+    }
 
     if(localStorage.getItem('app_text'))
     {
       this.text = JSON.parse(localStorage.getItem('app_text'));
     }
 
-    // if (!localStorage.getItem("address") || localStorage.getItem("address") == 'null') {
-    //   this.nav.navigateForward('address');
-    // }
+    if (!localStorage.getItem("address") || localStorage.getItem("address") == 'null') {
+      this.nav.navigateForward('address');
+    }
     this.city_name = localStorage.getItem('city_name');
     this.city_id   = localStorage.getItem('city_id');
     this.server.cartCount(localStorage.getItem('cart_no')+"?user_id="+localStorage.getItem('user_id')).subscribe((response:any) => {
@@ -184,6 +184,7 @@ export class HomePage {
     });
     this.verifyUser();
     this.loadData(localStorage.getItem('city_id')+"?ss=ss");
+    
   }
 
   ngOnInit()
@@ -214,77 +215,75 @@ export class HomePage {
 
   async loadData(city_id,viewAll = false)
   {
-    await this.delay(500);
-    const loading = await this.loadingController.create({});
-    await loading.present();
-   
-    this.let_init = 0;
-    this.data = null;
-    this.nearby = false;
-    this.ViewStore = false;  
+      const loading = await this.loadingController.create({});
+      await loading.present();
     
-    this.ComerceRest = [];
-    var lid = localStorage.getItem('lid') ? localStorage.getItem('lid') : 0;
-    
-    // Obtenemos las coordenadas
-    this.server.getGeolocation();
-
-    var lat = localStorage.getItem("current_lat") ? localStorage.getItem("current_lat") : 0;
-    var lng = localStorage.getItem("current_lng") ? localStorage.getItem("current_lng") : 0;
-    
-    this.server.homepage(city_id+"&lid="+lid+"&lat="+lat+"&lng="+lng).subscribe((response:any) => {
+      this.let_init = 0;
+      this.nearby = false;
+      var lid = localStorage.getItem('lid') ? localStorage.getItem('lid') : 0;
       
-        this.data = response.data;
-        if (localStorage.getItem('viewCatActive') || localStorage.getItem('viewCatActive') != null) {
-          loading.dismiss();
-          let cate = localStorage.getItem('viewCatActive');
-          this.ViewStores(cate);
-        }else {
-          this.text = response.data.text;
-          this.Tot_stores = response.data.Tot_stores;
-          this.events.publish('text', this.text);
-          this.events.publish('admin', response.data.admin);
-          localStorage.setItem('app_text', JSON.stringify(response.data.text));
-          localStorage.setItem('admin', JSON.stringify(response.data.admin));
+      // Obtenemos las coordenadas
+      this.server.getGeolocation();
 
-          this.loadRecentItems  = true;
-          this.loadRegularitems = true;
-          this.loadSliderKf     = true;
-          // Obtenemos los comercios de donde se ha pedido comida
-          this.getLastCommPed();
-          // Obtenemos todas la categorias
-          this.getTypeStore(response.data.Categorys);
-          // Ordenamos por los locales mas recientes
-          this.GetRecentStore(response.data.store);
-          // Obtenemos los comercios en tendencia
-          this.GetTrendingStore(response.data.trending);
-          
+      var lat = localStorage.getItem("current_lat") ? localStorage.getItem("current_lat") : 0;
+      var lng = localStorage.getItem("current_lng") ? localStorage.getItem("current_lng") : 0;
+      
+      this.server.homepage(city_id+"&lid="+lid+"&lat="+lat+"&lng="+lng).subscribe((response:any) => {
+       
+          this.data = response.data;
 
-          this.Content.scrollToPoint(0,0,300);
-          this.domCtrl.write(() => {
-            this.renderer.setStyle(this.headr, 'transition', 'margin-top 300ms');
-          });
-
-          // Generamos el numero random para los banners
-          let min = 5;
-          if (response.data.store < 5 && response.data.store > 3) {
-            min = 2;
-          }else if (response.data.store > 5) {
-            min = 5;
+          if (localStorage.getItem('viewCatActive') || localStorage.getItem('viewCatActive') != null) {
+            let cate = localStorage.getItem('viewCatActive');
+            loading.dismiss();
           }else {
-            min = 1;
-          }
-          let random = Math.floor(Math.random() * (response.data.store.length - min)) + min;
-          this.bannerBottomRand = random;
+            this.text = response.data.text;
+            this.Tot_stores = response.data.Tot_stores;
+            this.events.publish('text', this.text);
+            this.events.publish('admin', response.data.admin);
+            localStorage.setItem('app_text', JSON.stringify(response.data.text));
+            localStorage.setItem('admin', JSON.stringify(response.data.admin));
 
-          this.loadBody = true;
-          loading.dismiss();
-        }
+            this.loadRecentItems  = true;
+            this.loadRegularitems = true;
+            this.loadSliderKf     = true;
+            // Obtenemos los comercios de donde se ha pedido comida
+            this.getLastCommPed();
+            // Obtenemos todas la categorias
+            this.getTypeStore(response.data.Categorys);
+            // Ordenamos por los locales mas recientes
+            this.GetRecentStore(response.data.store);
+            // Obtenemos los comercios en tendencia
+            this.GetTrendingStore(response.data.trending);
+            
+
+            this.Content.scrollToPoint(0,0,300);
+            this.domCtrl.write(() => {
+              this.renderer.setStyle(this.headr, 'transition', 'margin-top 300ms');
+            });
+
+            // Generamos el numero random para los banners
+            let min = 5;
+            if (response.data.store < 5 && response.data.store > 3) {
+              min = 2;
+            }else if (response.data.store > 5) {
+              min = 5;
+            }else {
+              min = 1;
+            }
+            let random = Math.floor(Math.random() * (response.data.store.length - min)) + min;
+            this.bannerBottomRand = random;
+
+            this.loadBody = true;
+            this.ViewStore = false;
+            loading.dismiss();
+          }
         
-    
-    });
+          
+      
+      });
     
   }
+
 
   loadMoreData(event) {
     setTimeout(() => {
@@ -323,8 +322,8 @@ export class HomePage {
           this.presentToast("Te recomendamos cambiar tu contraseña","danger");
         }
       }else {
-        // localStorage.removeItem('user_id');
-        // this.nav.navigateBack('/welcome')
+        localStorage.removeItem('user_id');
+        this.nav.navigateBack('/welcome')
       }
     });
   }
@@ -562,21 +561,24 @@ export class HomePage {
 
   itemPage(storeData)
   {
-    if(storeData.open)
-    {
-      if (storeData.max_distance == 1) {
-        localStorage.setItem('menu_item', JSON.stringify(storeData));
-        this.nav.navigateForward('/item');
-      }
-      else 
-      {
-        this.presentToast("Este comercio no esta en tu ubicación actual.",'danger');
-      }
-    }
-    else 
-    {
-      this.presentToast("El comercio esta cerrado.",'danger');
-    }
+    localStorage.setItem('menu_item', JSON.stringify(storeData));
+    this.nav.navigateForward('/item');
+  
+    // if(storeData.open)
+    // {
+    //   if (storeData.max_distance == 1) {
+    //     localStorage.setItem('menu_item', JSON.stringify(storeData));
+    //     this.nav.navigateForward('/item');
+    //   }
+    //   else 
+    //   {
+    //     this.presentToast("Este comercio no esta en tu ubicación actual.",'danger');
+    //   }
+    // }
+    // else 
+    // {
+    //   this.presentToast("El comercio esta cerrado.",'danger');
+    // }
   }
 
   ViewCat() {
@@ -585,10 +587,8 @@ export class HomePage {
   }
 
   async ViewStores(data)  {
-    await this.delay(500);
     const loading = await this.loadingController.create({});
     await loading.present();
-
     localStorage.setItem('viewCatActive',data);
     let city_id = localStorage.getItem('city_id')+"?ss=ss";
     var lid = localStorage.getItem('lid') ? localStorage.getItem('lid') : 0;
@@ -596,8 +596,8 @@ export class HomePage {
     var lng = localStorage.getItem("current_lng") ? localStorage.getItem("current_lng") : 0;
 
     this.server.SearchCat(city_id+"&lid="+lid+"&lat="+lat+"&lng="+lng+"&cat="+data).subscribe((response:any) => {
-      console.log(response);
       this.ViewStore = true;
+      this.loadBody = true;
       this.ComerceRest = [];
       this.ComerceRestClose = [];
       this.categoriaActive = response.cat;
@@ -605,7 +605,7 @@ export class HomePage {
         const element = response.data[r];
         this.ComerceRest.push(element);
       }
-
+      
       loading.dismiss();
     });
   }

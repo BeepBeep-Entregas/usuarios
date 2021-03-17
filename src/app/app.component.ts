@@ -239,6 +239,7 @@ export class AppComponent {
     
   async loadData(city_id)
   {
+    localStorage.removeItem('viewCatActive');
     var lid = localStorage.getItem('lid') ? localStorage.getItem('lid') : 0;
     var lat = localStorage.getItem("current_lat") ? localStorage.getItem("current_lat") : 0;
     var lng = localStorage.getItem("current_lng") ? localStorage.getItem("current_lng") : 0;

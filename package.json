@@ -73,6 +73,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
     "cordova-android": "^9.0.0",
+    "cordova-plugin-ionic": "^5.4.7",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -105,6 +106,14 @@
         "APP_NAME": "BeepBeep Entregas",
         "FACEBOOK_HYBRID_APP_EVENTS": "false",
         "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
+      },
+      "cordova-plugin-ionic": {
+        "APP_ID": "6be8eb04",
+        "CHANNEL_NAME": "Master",
+        "UPDATE_METHOD": "auto",
+        "MAX_STORE": "2",
+        "MIN_BACKGROUND_DURATION": "30",
+        "UPDATE_API": "https://api.ionicjs.com"
       }
     },
     "platforms": [
