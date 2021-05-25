@@ -6,8 +6,8 @@ import { RouteReuseStrategy } from '@angular/router';
 // Material Design
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatIconModule} from '@angular/material/icon'; 
-import {MatRadioModule} from '@angular/material/radio'; 
+import {MatIconModule} from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -26,8 +26,6 @@ import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
 
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 
-// Facebook
-import { Facebook } from '@ionic-native/facebook/ngx';
 // Google
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 // Firebase
@@ -56,7 +54,7 @@ firebase.initializeApp(environment.firebaseConfig);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
-  
+
   providers: [
     Geolocation,
     NativeGeocoder,
@@ -66,7 +64,6 @@ firebase.initializeApp(environment.firebaseConfig);
     OneSignal,
     Keyboard,
     Stripe,
-    Facebook,
     GooglePlus,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
 
