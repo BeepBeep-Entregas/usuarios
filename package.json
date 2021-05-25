@@ -29,6 +29,7 @@
     "@ionic-native/facebook": "^5.24.0",
     "@ionic-native/geolocation": "^5.23.0",
     "@ionic-native/google-plus": "^5.24.0",
+    "@ionic-native/ionic-webview": "^5.28.0",
     "@ionic-native/keyboard": "^5.24.0",
     "@ionic-native/native-geocoder": "^5.23.0",
     "@ionic-native/onesignal": "^5.23.0",
@@ -40,14 +41,11 @@
     "again": "0.0.1",
     "angularfire2": "^5.4.2",
     "animate.css": "^4.1.1",
-    "com.paypal.cordova.mobilesdk": "~3.5.0",
     "cordova-browser": "^5.0.4",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-facebook4": "^6.4.0",
     "cordova-plugin-geolocation": "~4.0.2",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^4.0.0",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-nativegeocoder": "~3.2.2",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
@@ -72,8 +70,9 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
-    "cordova-android": "^9.0.0",
-    "cordova-plugin-ionic": "^5.4.7",
+    "cordova-android": "^9.1.0",
+    "cordova-ios": "^6.2.0",
+    "cordova-plugin-ionic-webview": "^5.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -92,8 +91,9 @@
     "plugins": {
       "onesignal-cordova-plugin": {},
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-nativegeocoder": {},
-      "com.paypal.cordova.mobilesdk": {},
+      "cordova-plugin-nativegeocoder": {
+        "LOCATION_WHEN_IN_USE_DESCRIPTION": "Necesitamos tu ubicación para mostrarte tiendas y servicios cercanos a ti"
+      },
       "cordova-plugin-stripe": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
@@ -118,7 +118,8 @@
     },
     "platforms": [
       "browser",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
